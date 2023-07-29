@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({Key? key, required this.hinttext, this.maxlines = 1})
+class CustomTextField extends StatefulWidget {
+  const CustomTextField(
+      {Key? key, required this.hinttext, this.maxlines = 1, this.onSaved})
       : super(key: key);
   final String hinttext;
   final int maxlines;
+  final void Function(String?)? onSaved;
 
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,10 +22,18 @@ class CustomTextField extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: TextField(
-            maxLines: maxlines,
+          child: TextFormField(
+            validator: (value) {
+              if (value?.isEmpty ?? true) {
+                return "Field is Empty";
+              } else {
+                return null;
+              }
+            },
+            onSaved: widget.onSaved,
+            maxLines: widget.maxlines,
             decoration: InputDecoration(
-                hintText: hinttext,
+                hintText: widget.hinttext,
                 border: buildborder(),
                 enabledBorder: buildborder(),
                 focusedBorder:

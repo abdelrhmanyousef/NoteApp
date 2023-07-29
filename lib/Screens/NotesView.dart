@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:noteapp/Screens/addNoteButtonShite.dart';
 
-import '../Screens/NotesViewbody.dart';
+import 'NotesViewbody.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
