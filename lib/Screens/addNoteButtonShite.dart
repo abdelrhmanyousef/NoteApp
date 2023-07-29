@@ -19,7 +19,7 @@ class addnotebutton extends StatelessWidget {
             hinttext: "Content",
             maxlines: 5,
           ),
-          CustomButton(),
+          CustomButton(bname: "Add"),
         ],
       ),
     );
